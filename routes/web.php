@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProfilLulusanController;
 use App\Http\Controllers\UserController;
+use App\Models\ProfilLulusan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,12 +22,18 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-Route::get('/login', [UserController::class, 'index']);
+Route::get('/admin/profil_lulusan', [ProfilLulusanController::class, 'index']);
 
-Route::get('/register', [UserController::class, 'create']);
+Route::get('/login', [UserController::class, 'index'])->middleware('guest');
+
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 
 Route::get('logout', [UserController::class, 'logout']);
 
 Route::post('store-user', [UserController::class, 'store']);
 
 Route::post('login', [UserController::class, 'login']);
+
+Route::post('profil-lulusan', [ProfilLulusanController::class, 'store']);
+
+Route::delete('profil-lulusan/{profil_lulusan:kode_pl}', [ProfilLulusanController::class, 'destroy']);

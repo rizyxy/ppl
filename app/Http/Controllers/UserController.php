@@ -58,7 +58,7 @@ class UserController extends Controller
 
             $user = Auth::user();
 
-            return redirect()->route('home');
+            return redirect('/admin/profil_lulusan');
         }
 
         return redirect('/login');
